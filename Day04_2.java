@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 import org.graalvm.compiler.core.common.type.ArithmeticOpTable.BinaryOp.And;
-class Day04_1
+class Day04_2
 {
 	public static void main(String[] args)
 	{
@@ -9,13 +9,28 @@ class Day04_1
 		int higherRange = 847060;
 		int count = 0;
 		boolean valid;
-		for(int i = lowerRange; i < higherRange; i++){
+		for(int i = lowerRange; i <= higherRange; i++){
 			valid = CheckPassword(i);
 			if(valid){
 				count++;
 			}
-			System.out.print(i);
-			System.out.println(" " + valid);
+			//System.out.print(i);
+			//System.out.println(" " + valid);
+		}
+		int[] correct = new int[count];
+		count = 0;
+		for(int i = lowerRange; i <= higherRange; i++){
+			valid = CheckPassword(i);
+			if(valid){
+				correct[count] = i;
+				count++;
+
+			}
+			//System.out.print(i);
+			//System.out.println(" " + valid);
+		}
+		for(int i = 0; i < correct.length; i++){
+			System.out.println(correct[i]);
 		}
 		System.out.println(count);
 	}
@@ -41,7 +56,7 @@ class Day04_1
 		if(valid){
 			for(int i = 0; i < Values.length -1; i++){
 				if(Values[i] == Values[i+1]){
-					if(i < 4 && i > 1){
+					if(i < 4 && i > 0){
 						if(Values[i] == Values[i+2] || Values[i] == Values[i-1]){
 							testForDouble = false;
 						}else{
@@ -52,7 +67,7 @@ class Day04_1
 						}else{
 							testForDouble = true;
 						}
-					}else if(i == 1){
+					}else if(i == 0){
 						if(Values[i] == Values[i+2]){
 							testForDouble = false;
 						}else{
